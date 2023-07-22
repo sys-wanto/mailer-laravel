@@ -108,7 +108,9 @@
                                         <option value="admin_data" @if($data->level == 'admin_data') selected @endif>Admin Data</option>
                                         <option value="admin_arsip" @if($data->level == 'admin_arsip') selected @endif>Admin Arsip</option>
                                         <option value="kepala_kantor" @if($data->level == 'kepala_kantor') selected @endif>Kepala Kantor</option>
+                                        <option value="kepala_tu" @if($data->level == 'kepala_tu') selected @endif>Kepala TU</option>
                                         <option value="kepala_seksi" @if($data->level == 'kepala_seksi') selected @endif>Kepala Seksi</option>
+                                        <option value="staff_tu" @if($data->level == 'staff_tu') selected @endif>Staff TU</option>
                                         <option value="staff_seksi" @if($data->level == 'staff_seksi') selected @endif>Staff Seksi</option>
                                     </select>
                                 </div>
