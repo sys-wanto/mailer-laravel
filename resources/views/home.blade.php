@@ -17,7 +17,7 @@ $(document).ready(function() {
             <div class="card-body">
                 <div class="clearfix">
                     <div class="float-left">
-                        <i class="mdi mdi-account-location text-info icon-lg"></i>
+                        <i class="mdi mdi-account-box text-info icon-lg"></i>
                     </div>
                     <div class="float-right">
                         <p class="mb-0 text-right">User</p>
@@ -37,7 +37,7 @@ $(document).ready(function() {
             <div class="card-body">
                 <div class="clearfix">
                     <div class="float-left">
-                        <i class="mdi mdi-book text-success icon-lg" style="width: 40px;height: 40px;"></i>
+                        <i class="mdi mdi-package text-success icon-lg" style="width: 40px;height: 40px;"></i>
                     </div>
                     <div class="float-right">
                         <p class="mb-0 text-right">Seksi</p>
@@ -47,7 +47,7 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-book mr-1" aria-hidden="true"></i> Total Seksi
+                    <i class="mdi mdi-package mr-1" aria-hidden="true"></i> Total Seksi
                 </p>
             </div>
         </div>
@@ -57,7 +57,7 @@ $(document).ready(function() {
             <div class="card-body">
                 <div class="clearfix">
                     <div class="float-left">
-                        <i class="mdi mdi-book text-success icon-lg" style="width: 40px;height: 40px;"></i>
+                        <i class="mdi mdi-table-of-contents text-warning icon-lg" style="width: 40px;height: 40px;"></i>
                     </div>
                     <div class="float-right">
                         <p class="mb-0 text-right">Jabatan</p>
@@ -67,7 +67,7 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-book mr-1" aria-hidden="true"></i> Total Jabatan
+                    <i class="mdi mdi-table-of-contents mr-1" aria-hidden="true"></i> Total Jabatan
                 </p>
             </div>
         </div>
@@ -77,7 +77,7 @@ $(document).ready(function() {
             <div class="card-body">
                 <div class="clearfix">
                     <div class="float-left">
-                        <i class="mdi mdi-book text-success icon-lg" style="width: 40px;height: 40px;"></i>
+                        <i class="mdi mdi-contacts text-danger icon-lg" style="width: 40px;height: 40px;"></i>
                     </div>
                     <div class="float-right">
                         <p class="mb-0 text-right">Pegawai</p>
@@ -87,7 +87,7 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-book mr-1" aria-hidden="true"></i> Total Pegawai
+                    <i class="mdi mdi-contacts mr-1" aria-hidden="true"></i> Total Pegawai
                 </p>
             </div>
         </div>
@@ -97,7 +97,7 @@ $(document).ready(function() {
             <div class="card-body">
                 <div class="clearfix">
                     <div class="float-left">
-                        <i class="mdi mdi-poll-box text-danger icon-lg"></i>
+                        <i class="mdi mdi-book-multiple text-danger icon-lg"></i>
                     </div>
                     <div class="float-right">
                         <p class="mb-0 text-right">Surat Masuk</p>
@@ -107,7 +107,7 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> Total Surat Masuk
+                    <i class="mdi mdi-book-multiple mr-1" aria-hidden="true"></i> Total Surat Masuk
                 </p>
             </div>
         </div>
@@ -117,7 +117,7 @@ $(document).ready(function() {
             <div class="card-body">
                 <div class="clearfix">
                     <div class="float-left">
-                        <i class="mdi mdi-receipt text-warning icon-lg"></i>
+                        <i class="mdi mdi-book-open text-warning icon-lg"></i>
                     </div>
                     <div class="float-right">
                         <p class="mb-0 text-right">Surat Keluar</p>
@@ -127,7 +127,7 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Total Surat Keluar
+                    <i class="mdi mdi-book-open mr-1" aria-hidden="true"></i> Total Surat Keluar
                 </p>
             </div>
         </div>
@@ -137,7 +137,7 @@ $(document).ready(function() {
             <div class="card-body">
                 <div class="clearfix">
                     <div class="float-left">
-                        <i class="mdi mdi-receipt text-warning icon-lg"></i>
+                        <i class="mdi mdi-file-document text-success icon-lg"></i>
                     </div>
                     <div class="float-right">
                         <p class="mb-0 text-right">Nota Dinas</p>
@@ -147,7 +147,7 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Total Nota Dinas
+                    <i class="mdi mdi-file-document mr-1" aria-hidden="true"></i> Total Nota Dinas
                 </p>
             </div>
         </div>
@@ -157,7 +157,7 @@ $(document).ready(function() {
             <div class="card-body">
                 <div class="clearfix">
                     <div class="float-left">
-                        <i class="mdi mdi-receipt text-warning icon-lg"></i>
+                        <i class="mdi mdi-file-multiple text-info icon-lg"></i>
                     </div>
                     <div class="float-right">
                         <p class="mb-0 text-right">Surat Tugas</p>
@@ -167,7 +167,7 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Total Surat Tugas
+                    <i class="mdi mdi-file-multiple mr-1" aria-hidden="true"></i> Total Surat Tugas
                 </p>
             </div>
         </div>
