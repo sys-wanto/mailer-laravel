@@ -234,20 +234,6 @@
                                                 </button>
                                                 <div class="dropdown-menu" x-placement="bottom-start"
                                                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 30px, 0px);">
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('surat_tugas_kepala_tu.edit', $surat_tugass->id) }}">
-                                                        Edit
-                                                    </a>
-                                                    <form
-                                                        action="{{ route('surat_tugas_kepala_tu.destroy', $surat_tugass->id) }}"
-                                                        class="pull-left" method="post">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('delete') }}
-                                                        <button class="dropdown-item"
-                                                            onclick="return confirm('Anda yakin ingin menghapus data ini?')">
-                                                            Delete
-                                                        </button>
-                                                    </form>
                                                     <button type="button" class="dropdown-item"
                                                         onclick="tampilTrack('{{ 'SuratTugas' . '-' . $surat_tugass->id }}')">
                                                         Track
