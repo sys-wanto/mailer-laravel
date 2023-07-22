@@ -249,6 +249,20 @@
             </ul>
         </div>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#ui-laporan" aria-expanded="false" aria-controls="ui-laporan">
+            <i class="menu-icon mdi mdi-table"></i>
+            <span class="menu-title">Laporan Surat</span>
+            <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ui-laporan">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('laporan_surat/surat')}}">Laporan Surat</a>
+                </li>
+            </ul>
+        </div>
+    </li>
     @endif
 
     @if(Auth::user()->level == 'kepala_tu')
@@ -324,6 +338,20 @@
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('persetujuan.done')}}">Done Setujui</a>
+                </li>
+            </ul>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#ui-laporan" aria-expanded="false" aria-controls="ui-laporan">
+            <i class="menu-icon mdi mdi-table"></i>
+            <span class="menu-title">Laporan Surat</span>
+            <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ui-laporan">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('laporan_surat/surat')}}">Laporan Surat</a>
                 </li>
             </ul>
         </div>
@@ -407,6 +435,20 @@
             </ul>
         </div>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#ui-laporan" aria-expanded="false" aria-controls="ui-laporan">
+            <i class="menu-icon mdi mdi-table"></i>
+            <span class="menu-title">Laporan Surat</span>
+            <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ui-laporan">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('laporan_surat/surat')}}">Laporan Surat</a>
+                </li>
+            </ul>
+        </div>
+    </li>
     @endif
     @if(Auth::user()->level == 'staff_tu')
     <li class="nav-item {{ setActive(['klasifikasi_surat_staff_seksi']) }}">
@@ -465,6 +507,20 @@
             </ul>
         </div>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#ui-laporan" aria-expanded="false" aria-controls="ui-laporan">
+            <i class="menu-icon mdi mdi-table"></i>
+            <span class="menu-title">Laporan Surat</span>
+            <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ui-laporan">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('laporan_surat/surat')}}">Laporan Surat</a>
+                </li>
+            </ul>
+        </div>
+    </li>
     @endif
     @if(Auth::user()->level == 'staff_seksi')
     <li class="nav-item {{ setActive(['klasifikasi_surat_staff_seksi']) }}">
@@ -519,6 +575,20 @@
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('surat_tugas_staff_seksi')}}">Surat Tugas</a>
+                </li>
+            </ul>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#ui-laporan" aria-expanded="false" aria-controls="ui-laporan">
+            <i class="menu-icon mdi mdi-table"></i>
+            <span class="menu-title">Laporan Surat</span>
+            <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ui-laporan">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('laporan_surat/surat')}}">Laporan Surat</a>
                 </li>
             </ul>
         </div>
