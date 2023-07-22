@@ -135,6 +135,17 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="form-group{{ $errors->has('file_surat_masuk') ? ' has-error' : '' }}">
+                                <label for="file_surat_masuk" class="col-md-4 control-label">Surat Masuk</label>
+                                <div class="col-md-6">
+                                    {!! QrCode::size(250)->backgroundColor(255,255,255)->generate(asset('files/surat_masuk/' . $surat_masuk->file_surat_masuk)) !!}
+                                    @if ($errors->has('file_surat_masuk'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('file_surat_masuk') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
                             <a href="{{route('surat_masuk_kepala_kantor.index')}}" class="btn btn-light pull-right">Back</a>
                     </div>
                 </div>
