@@ -140,6 +140,17 @@ $(document).ready(function() {
                                     @endif
                                 </div>
                             </div>
+                            <div class="form-group{{ $errors->has('file_surat_keluar') ? ' has-error' : '' }}">
+                                <label for="file_surat_keluar" class="col-md-4 control-label">Surat Keluar</label>
+                                <div class="col-md-6">
+                                    {!! QrCode::size(250)->backgroundColor(255,255,255)->generate(asset('files/surat_keluar/' . $surat_keluar->file_surat_keluar)) !!}
+                                    @if ($errors->has('file_surat_keluar'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('file_surat_keluar') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
                             <a href="{{route('surat_keluar_staff_seksi.index')}}" class="btn btn-light pull-right">Back</a>
                     </div>
                 </div>
