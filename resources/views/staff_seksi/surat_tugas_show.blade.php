@@ -165,6 +165,17 @@ $(document).ready(function() {
                                     @endif
                                 </div>
                             </div>
+                            <div class="form-group{{ $errors->has('file_surat_tugas') ? ' has-error' : '' }}">
+                                <label for="file_surat_tugas" class="col-md-4 control-label">Surat Tugas</label>
+                                <div class="col-md-6">
+                                    {!! QrCode::size(250)->backgroundColor(255,255,255)->generate(asset('files/surat_tugas/' . $surat_tugas->file_surat_tugas)) !!}
+                                    @if ($errors->has('file_surat_tugas'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('file_surat_tugas') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
                             <a href="{{route('surat_tugas_staff_seksi.index')}}" class="btn btn-light pull-right">Back</a>
                     </div>
                 </div>
