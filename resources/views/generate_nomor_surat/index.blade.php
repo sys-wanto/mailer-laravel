@@ -223,9 +223,6 @@
                                         Perekam
                                     </th>
                                     <th>
-                                        File Surat
-                                    </th>
-                                    <th>
                                         Action
                                     </th>
                                 </tr>
@@ -247,9 +244,6 @@
                                         </td>
                                         <td>
                                             {{ $surat->nama }}
-                                        </td>
-                                        <td>
-                                            FILE SURAT
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-success dropdown-toggle btn-sm"
