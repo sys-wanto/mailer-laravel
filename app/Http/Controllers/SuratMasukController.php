@@ -47,7 +47,7 @@ class SuratMasukController extends Controller
 	{
 		$this->validate($request, [
 			'asal_surat_masuk' => 'required|string|max:255',
-			'nomor_surat_masuk' => 'required|string|max:20',
+			'nomor_surat_masuk' => 'required|string|max:255',
 			'tanggal_surat_masuk' => 'required|date|max:255',
 			'lampiran_surat_masuk' => 'required|string|max:255',
 			'perihal_surat_masuk' => 'required|string|max:255',
