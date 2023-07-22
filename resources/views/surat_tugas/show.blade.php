@@ -31,18 +31,6 @@ $(document).ready(function() {
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group{{ $errors->has('nama') ? ' has-error' : '' }}">
-                                <label for="nama" class="col-md-4 control-label">Pegawai</label>
-                                <div class="col-md-6">
-                                    <input id="nama" type="text" class="form-control" name="nama"
-                                        value="{{ $surat_tugas->pegawai->nama }}" readonly="">
-                                    @if ($errors->has('nama'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('nama') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
                             <div class="form-group{{ $errors->has('nama_klasifikasi') ? ' has-error' : '' }}">
                                 <label for="nama_klasifikasi" class="col-md-4 control-label">Klasifikasi Surat</label>
                                 <div class="col-md-6">
@@ -150,6 +138,16 @@ $(document).ready(function() {
                                         <strong>{{ $errors->first('tanggal_selesai_tugas') }}</strong>
                                     </span>
                                     @endif
+                                </div>
+                            </div>
+                            <div class="form-group{{ $errors->has('nama') ? ' has-error' : '' }}">
+                                <label for="nama" class="col-md-4 control-label">Pegawai</label>
+                                <div class="col-md-6">
+                                    <ul>
+                                        @foreach ($surat_tugas->penugasan as $petugas)
+                                            <li>{{ $petugas->pegawai->nama }}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
                             <div class="form-group{{ $errors->has('file_surat_tugas') ? ' has-error' : '' }}">

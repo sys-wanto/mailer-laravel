@@ -1,10 +1,14 @@
 @section('js')
 
-<script type="text/javascript">
-$(document).ready(function() {
-    $(".users").select2();
-});
-</script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".users").select2();
+        });
+        $('#pegawai_ditugaskan').select2({
+            placeholder: "--Pilih Pegawai--",
+            allowClear: true
+        });
+    </script>
 @stop
 
 @extends('layouts.app')
@@ -40,13 +44,13 @@ $(document).ready(function() {
                                 style="margin-bottom: 20px;">
                                 <label for="pegawai_id" class="col-md-4 control-label">Pegawai</label>
                                 <div class="col-md-6">
-                                    <select class="form-control" name="pegawai_id" required="">
-                                        <option value="">-- Pilih Pegawai --</option>
-                                        @foreach($pegawai as $pegawais)
-                                        <option value="{{$pegawais->id}}"
-                                            {{$surat_tugas->pegawai_id == $pegawais->id ? "selected":""}}>
-                                            {{$pegawais->nama}}
-                                        </option>
+                                    <select class="form-control" name="pegawai_ditugaskan[]" multiple="multiple"
+                                        id="pegawai_ditugaskan" required="">
+                                        @foreach ($pegawai as $pegawais)
+                                            <option value="{{ $pegawais->id }}"
+                                                {{$surat_tugas->pegawai_id == $pegawais->id ? "selected":""}}>
+                                                {{$pegawais->nama}}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
