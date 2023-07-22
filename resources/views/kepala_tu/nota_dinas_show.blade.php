@@ -134,6 +134,17 @@ $(document).ready(function() {
                                     @endif
                                 </div>
                             </div>
+                            <div class="form-group{{ $errors->has('file_nota_dinas') ? ' has-error' : '' }}">
+                                <label for="file_nota_dinas" class="col-md-4 control-label">Nota Dinas</label>
+                                <div class="col-md-6">
+                                    {!! QrCode::size(250)->backgroundColor(255,255,255)->generate(asset('files/nota_dinas/' . $nota_dinas->file_nota_dinas)) !!}
+                                    @if ($errors->has('file_nota_dinas'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('file_nota_dinas') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
                             <a href="{{route('nota_dinas_kepala_tu.index')}}" class="btn btn-light pull-right">Back</a>
                     </div>
                 </div>
