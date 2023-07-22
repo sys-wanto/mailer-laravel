@@ -41,8 +41,7 @@ class DisposisiController extends Controller
     {
         $user = Auth::user();
         $user = DB::table('pegawai')->select('users.level', 'pegawai.id', 'pegawai.seksi_id')->join('users', 'users.id', '=', 'pegawai.users_id')->where('pegawai.users_id', $user->id)->first();
-        // $user = DB::table('pegawai')->join('users', 'users.id', '=', 'pegawai.users_id')->where('users_id', $user->id)->first();
-        // $track_surats = TrackSurat::where('posisi_surat', '=', $user->level)->join('track_surat')->where('tgl_kirim', '=', '0000-00-00')->where('tgl_terima', '<>', '0000-00-00')->get();
+
         if (in_array($user->level, $this->needle_staff)) {
             $track_surats = TrackSurat::where('posisi_surat', '=', $user->level)->join('pegawai', 'pegawai.id', '=', 'track_surats.id_pengirim')->where('tgl_kirim', '=', '0000-00-00')->where('tgl_terima', '<>', '0000-00-00')->where('pegawai.seksi_id', '=', $user->seksi_id)->where('track_surats.id_pengirim', '=', $user->id)->get();
         } else {
@@ -186,8 +185,6 @@ class DisposisiController extends Controller
     {
         $user = Auth::user();
         $user = DB::table('pegawai')->select('users.level', 'pegawai.id', 'pegawai.seksi_id')->join('users', 'users.id', '=', 'pegawai.users_id')->where('pegawai.users_id', $user->id)->first();
-        // $track_surats = TrackSurat::where('posisi_surat', '=', $user->level)->where('tgl_kirim', '<>', '0000-00-00')->where('tgl_terima', '<>', '0000-00-00')->get();
-        // $track_surats = TrackSurat::where('posisi_surat', '=', $user->level)->join('pegawai','pegawai.id','=','track_surats.id_pengirim')->where('tgl_kirim', '<>', '0000-00-00')->where('tgl_terima', '<>', '0000-00-00')->where('pegawai.seksi_id','=',$user->seksi_id)->get();
 
         if (in_array($user->level, $this->needle_staff)) {
             $track_surats = TrackSurat::where('posisi_surat', '=', $user->level)->join('pegawai', 'pegawai.id', '=', 'track_surats.id_pengirim')->where('tgl_kirim', '<>', '0000-00-00')->where('tgl_terima', '<>', '0000-00-00')->where('pegawai.seksi_id', '=', $user->seksi_id)->where('track_surats.id_pengirim', '=', $user->id)->get();

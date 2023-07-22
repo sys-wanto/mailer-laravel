@@ -132,7 +132,6 @@ class PersetujuanController extends Controller
     public function done()
     {
         $user = Auth::user();
-        // $user = DB::table('pegawai')->select()->join('users', 'users.id', '=', 'pegawai.users_id')->where('users_id', $user->id)->first();
         $user = DB::table('pegawai')->select('users.level', 'pegawai.id', 'pegawai.seksi_id')->join('users', 'users.id', '=', 'pegawai.users_id')->where('pegawai.users_id', $user->id)->first();
         if (in_array($user->level, $this->kepala)) {
             $track_surats = TrackSurat::where('posisi_surat', '=', $user->level)->join('pegawai', 'pegawai.id', '=', 'track_surats.id_pengirim')->where('tgl_kirim', '<>', '0000-00-00')->where('tgl_terima', '<>', '0000-00-00')->where('pegawai.seksi_id', '=', $user->seksi_id)->where('track_surats.id_pengirim', '=', $user->id)->get();
@@ -140,7 +139,6 @@ class PersetujuanController extends Controller
             $track_surats = TrackSurat::where('posisi_surat', '=', $user->level)->join('pegawai', 'pegawai.id', '=', 'track_surats.id_pengirim')->where('tgl_kirim', '<>', '0000-00-00')->where('tgl_terima', '<>', '0000-00-00')->where('pegawai.seksi_id', '=', $user->seksi_id)->get();
         }
 
-        // $track_surats = TrackSurat::where('posisi_surat', '=', $user->level)->where('tgl_kirim', '<>', '0000-00-00')->where('tgl_terima', '<>', '0000-00-00')->get();
         $track_surat_lengkap = TrackSurat::all();
         $collections = array();
         foreach ($track_surats as $key => $track_surat) {
@@ -277,14 +275,12 @@ class PersetujuanController extends Controller
         //$surat_[1] = id surat;
         //$surat_[0] = type surat;
 
-
         if ($user->level <> 'kepala_kantor') {
 
             $track_surat2 = TrackSurat::where('type_surat', '=', $surat_[0])->where('id_surat', '=', $surat_[1]);
             $track_surat2 = $track_surat2->where('urutan', '=', 2);
             $track_surat2->update([
                 'tgl_kirim' => $waktu->toDateString(),
-                // 'id_penerima' => $pegawai_user->id,
                 'id_penerima' => $request->persetujuan_ke,
                 'catatan' => $request->catatan
             ]);
@@ -294,7 +290,6 @@ class PersetujuanController extends Controller
 
             $track_surat3->update([
                 'tgl_terima' => $waktu->toDateString(),
-                // 'id_pengirim' => $pegawai_user->id
                 'id_pengirim' => $request->persetujuan_ke,
             ]);
         } else {

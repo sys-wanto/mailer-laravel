@@ -41,12 +41,7 @@
                             "columns": [{
                                     "data": "TITLE",
                                     "render": function(value, type, row, meta) {
-                                        // if(meta.row==0){
-                                        //     return `${row['PENGIRIM']=='-'?'Surat Masuk':row['PENGIRIM']} | ${row['TGL_KIRIM']}`;
-                                        // }else{
                                         return `${row['PENGIRIM']} | ${row['TGL_KIRIM']}`;
-                                        // }
-                                        // return `${meta.row>=1?data['data'][meta.row-1]['PENGIRIM']:'Surat Masuk'} | ${row['TGL_KIRIM']=='0000-00-00'?'-':row['TGL_KIRIM']}`;
                                     }
                                 },
                                 {
@@ -56,7 +51,6 @@
                                     "data": "CATATAN",
                                     "render": function(value, type, row, meta) {
                                         return `${row['CATATAN'].length<='0'?'-':row['CATATAN']}`;
-                                        // return `${meta.row>=1?data['data'][meta.row-1]['PENGIRIM']:'Surat Masuk'} | ${row['TGL_KIRIM']=='0000-00-00'?'-':row['TGL_KIRIM']}`;
                                     }
                                 },
                             ]
