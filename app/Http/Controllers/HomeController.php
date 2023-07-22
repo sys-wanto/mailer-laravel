@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Pegawai;
+use App\Models\Seksi;
+use App\Models\Jabatan;
 use App\Models\SuratMasuk;
 use App\Models\SuratKeluar;
 use App\Models\NotaDinas;
@@ -21,11 +23,13 @@ class HomeController extends Controller
     public function index()
     {
         $users = User::get();
+        $seksi = Seksi::get();
+        $jabatan = Jabatan::get();
         $pegawai = Pegawai::get();
         $surat_masuk = SuratMasuk::get();
         $surat_keluar = SuratKeluar::get();
         $nota_dinas = NotaDinas::get();
         $surat_tugas = SuratTugas::get();
-        return view('home', compact('users','pegawai','surat_masuk','surat_keluar','nota_dinas', 'surat_tugas'));
+        return view('home', compact('users','seksi', 'jabatan', 'pegawai','surat_masuk','surat_keluar','nota_dinas', 'surat_tugas'));
     }
 }
