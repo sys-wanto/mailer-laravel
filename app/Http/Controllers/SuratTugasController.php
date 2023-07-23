@@ -211,10 +211,14 @@ class SuratTugasController extends Controller
         }
 
         $surat_tugas = SuratTugas::findOrFail($id);
+        $ditugaskan = [];
+        foreach($surat_tugas->penugasan as $key => $val){
+            $ditugaskan[] = $val->pegawai_id;
+        }
         $seksi = Seksi::get();
         $pegawai = Pegawai::get();
         $klasifikasi_surat = KlasifikasiSurat::get();
-        return view('surat_tugas.edit', compact('surat_tugas', 'seksi', 'pegawai', 'klasifikasi_surat'));
+        return view('surat_tugas.edit', compact('surat_tugas', 'seksi', 'pegawai', 'klasifikasi_surat','ditugaskan'));
     }
 
     public function update(Request $request, $id)
