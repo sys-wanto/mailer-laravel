@@ -223,6 +223,9 @@
                                         Perekam
                                     </th>
                                     <th>
+                                        File Surat
+                                    </th>
+                                    <th>
                                         Action
                                     </th>
                                 </tr>
@@ -244,6 +247,18 @@
                                         </td>
                                         <td>
                                             {{ $surat->nama }}
+                                        </td>
+                                        <td>
+                                            @if ($surat->jenis_surat =='SuratKeluar')
+                                            <a
+                                            href="{{ asset('files/surat_keluar/' . $surat->file) }}">Download</a>
+                                            @elseif ($surat->jenis_surat =='NotaDinas')
+                                            <a
+                                            href="{{ asset('files/nota_dinas/' . $surat->file) }}">Download</a>
+                                            @elseif ($surat->jenis_surat =='SuratTugas')
+                                            <a
+                                            href="{{ asset('files/surat_tugas/' . $surat->file) }}">Download</a>
+                                            @endif 
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-success dropdown-toggle btn-sm"

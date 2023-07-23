@@ -33,11 +33,10 @@ class GenerateNomorSuratController extends Controller
 	}
 	public function index()
 	{
-		$nota_dinas = DB::table('nota_dinas')->join('pegawai', 'nota_dinas.perekam_id', 'pegawai.id')->select(DB::raw("CONCAT('NotaDinas','-',nota_dinas.id) as id"), DB::raw("'NotaDinas' as jenis_surat"), DB::raw("perihal_nota_dinas as perihal"), 'nomor_surat', 'tanggal_nota_dinas AS tanggal_surat', 'pegawai.nama', 'nota_dinas.created_at AS created_at');
-		$surat_tugas = DB::table('surat_tugas')->join('pegawai', 'surat_tugas.perekam_id', 'pegawai.id')->select(DB::raw("CONCAT('SuratTugas','-',surat_tugas.id) as id"), DB::raw("'SuratTugas' as jenis_surat"), DB::raw("perihal_surat_tugas as perihal"), 'nomor_surat', 'tanggal_surat_tugas AS tanggal_surat', 'pegawai.nama', 'surat_tugas.created_at AS created_at');
-		$surats_sql = DB::table('surat_keluar')->join('pegawai', 'surat_keluar.perekam_id', 'pegawai.id')->select(DB::raw("CONCAT('SuratKeluar','-',surat_keluar.id) as id"), DB::raw("'SuratKeluar' as jenis_surat"), DB::raw("perihal_surat_keluar as perihal"), 'nomor_surat', 'tanggal_surat_keluar AS tanggal_surat', 'pegawai.nama', 'surat_keluar.created_at AS created_at')->union($surat_tugas)->union($nota_dinas)->toSql();
+		$nota_dinas = DB::table('nota_dinas')->join('pegawai', 'nota_dinas.perekam_id', 'pegawai.id')->select(DB::raw("CONCAT('NotaDinas','-',nota_dinas.id) as id"), DB::raw("'NotaDinas' as jenis_surat"), DB::raw("perihal_nota_dinas as perihal"), DB::raw("file_nota_dinas as file"), 'nomor_surat', 'tanggal_nota_dinas AS tanggal_surat', 'pegawai.nama', 'nota_dinas.created_at AS created_at');
+		$surat_tugas = DB::table('surat_tugas')->join('pegawai', 'surat_tugas.perekam_id', 'pegawai.id')->select(DB::raw("CONCAT('SuratTugas','-',surat_tugas.id) as id"), DB::raw("'SuratTugas' as jenis_surat"), DB::raw("perihal_surat_tugas as perihal"), DB::raw("file_surat_tugas as file"),'nomor_surat', 'tanggal_surat_tugas AS tanggal_surat', 'pegawai.nama', 'surat_tugas.created_at AS created_at');
+		$surats_sql = DB::table('surat_keluar')->join('pegawai', 'surat_keluar.perekam_id', 'pegawai.id')->select(DB::raw("CONCAT('SuratKeluar','-',surat_keluar.id) as id"), DB::raw("'SuratKeluar' as jenis_surat"), DB::raw("perihal_surat_keluar as perihal"), DB::raw("file_surat_keluar as file"),'nomor_surat', 'tanggal_surat_keluar AS tanggal_surat', 'pegawai.nama', 'surat_keluar.created_at AS created_at')->union($surat_tugas)->union($nota_dinas)->toSql();
 		$surats = DB::select("SELECT * FROM ({$surats_sql}) t ORDER BY nomor_surat REGEXP '^[^A-Za-z0-9]' DESC, created_at DESC");
-		// ->orderBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d %h:%i:%s %p')"), 'DESC');
 		return view('generate_nomor_surat.index', compact('surats'));
 	}
 
