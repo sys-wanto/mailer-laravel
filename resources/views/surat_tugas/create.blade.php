@@ -8,6 +8,10 @@
             placeholder: "--Pilih Pegawai--",
             allowClear: true
         });
+        $('#pegawai_tembusan').select2({
+            placeholder: "--Pilih Pegawai--",
+            allowClear: true
+        });
     </script>
 @stop
 
@@ -157,12 +161,24 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group{{ $errors->has('pegawai_id') ? ' has-error' : '' }} "
+                                <div class="form-group{{ $errors->has('pegawai_ditugaskan') ? ' has-error' : '' }} "
                                     style="margin-bottom: 20px;">
-                                    <label for="pegawai_id" class="col-md-4 control-label">Pegawai</label>
+                                    <label for="pegawai_ditugaskan" class="col-md-4 control-label">CC</label>
                                     <div class="col-md-6">
                                         <select class="form-control" name="pegawai_ditugaskan[]" multiple="multiple"
                                             id="pegawai_ditugaskan" required="">
+                                            @foreach ($pegawai as $pegawais)
+                                                <option value="{{ $pegawais->id }}">{{ $pegawais->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group{{ $errors->has('pegawai_tembusan') ? ' has-error' : '' }} "
+                                    style="margin-bottom: 20px;">
+                                    <label for="pegawai_tembusan" class="col-md-4 control-label">BCC</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="pegawai_tembusan[]" multiple="multiple"
+                                            id="pegawai_tembusan" required="">
                                             @foreach ($pegawai as $pegawais)
                                                 <option value="{{ $pegawais->id }}">{{ $pegawais->nama }}</option>
                                             @endforeach

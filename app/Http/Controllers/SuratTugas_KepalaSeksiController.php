@@ -30,7 +30,7 @@ class SuratTugas_KepalaSeksiController extends Controller
 
         $user = auth()->user();
         $pegawai = Pegawai::where('users_id', '=', $user->id)->first();
-        $surat_tugas = SuratTugas::whereRelation('penugasan', 'pegawai_id', '=', $pegawai->id)->get();
+        $surat_tugas = SuratTugas::whereRelation('penugasan', 'pegawai_id', '=', $pegawai->id)->orWhereRelation('tembusan', 'pegawai_id', '=', $pegawai->id)->get();
         return view('kepala_seksi.surat_tugas_index', compact('surat_tugas'));
     }
 

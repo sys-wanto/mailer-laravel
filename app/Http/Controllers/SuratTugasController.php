@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penugasan;
+use App\Models\Tembusan;
 use App\Models\TrackSurat;
 use App\Models\User;
 use App\Models\Seksi;
@@ -107,6 +108,7 @@ class SuratTugasController extends Controller
         ]);
 
         $this->tugaskan_pegawai($surat_tugas_baru->id, $request->pegawai_ditugaskan);
+        $this->tembusan_pegawai($surat_tugas_baru->id, $request->pegawai_tembusan);
 
         $this->init_track_surat($surat_tugas_baru->id);
 
@@ -120,6 +122,16 @@ class SuratTugasController extends Controller
     {
         foreach ($pegawai_ditugaskan as $key => $petugas) {
             Penugasan::create([
+                'id_surat_tugas' => $surat_tugas,
+                'pegawai_id' => $petugas
+            ]);
+        }
+    }
+
+    private function tembusan_pegawai($surat_tugas, $pegawai_tembusan)
+    {
+        foreach ($pegawai_tembusan as $key => $petugas) {
+            Tembusan::create([
                 'id_surat_tugas' => $surat_tugas,
                 'pegawai_id' => $petugas
             ]);

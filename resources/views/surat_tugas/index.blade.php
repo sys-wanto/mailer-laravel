@@ -198,7 +198,10 @@
                                         Nomor Surat Tugas | Tanggal
                                     </th>
                                     <th>
-                                        Pegawai
+                                        Pegawai Di Tugaskan
+                                    </th>
+                                    <th>
+                                        Pegawai Tembusan
                                     </th>
                                     <th>
                                         File Surat Tugas
@@ -226,6 +229,13 @@
                                         <td>
                                             <ul>
                                                 @foreach ($surat_tugass->penugasan as $petugas)
+                                                    <li>{{ $petugas->pegawai->nama }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                @foreach ($surat_tugass->tembusan as $petugas)
                                                     <li>{{ $petugas->pegawai->nama }}</li>
                                                 @endforeach
                                             </ul>

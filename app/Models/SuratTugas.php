@@ -44,6 +44,11 @@ class SuratTugas extends Model
         return $this->hasMany(Penugasan::class, 'id_surat_tugas');
     }
 
+    public function tembusan()
+    {
+        return $this->hasMany(Tembusan::class, 'id_surat_tugas');
+    }
+
     public function klasifikasi_surat()
     {
         return $this->belongsTo(KlasifikasiSurat::class, 'klasifikasi_surat_id', 'id');
