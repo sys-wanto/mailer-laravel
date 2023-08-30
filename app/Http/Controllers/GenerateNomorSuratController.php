@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\notification;
 use App\Models\NomorSurat;
 use App\Models\NotaDinas;
 use App\Models\Pegawai;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Mail;
 
 class GenerateNomorSuratController extends Controller
 {
@@ -34,8 +36,8 @@ class GenerateNomorSuratController extends Controller
 	public function index()
 	{
 		$nota_dinas = DB::table('nota_dinas')->join('pegawai', 'nota_dinas.perekam_id', 'pegawai.id')->select(DB::raw("CONCAT('NotaDinas','-',nota_dinas.id) as id"), DB::raw("'NotaDinas' as jenis_surat"), DB::raw("perihal_nota_dinas as perihal"), DB::raw("file_nota_dinas as file"), 'nomor_surat', 'tanggal_nota_dinas AS tanggal_surat', 'pegawai.nama', 'nota_dinas.created_at AS created_at');
-		$surat_tugas = DB::table('surat_tugas')->join('pegawai', 'surat_tugas.perekam_id', 'pegawai.id')->select(DB::raw("CONCAT('SuratTugas','-',surat_tugas.id) as id"), DB::raw("'SuratTugas' as jenis_surat"), DB::raw("perihal_surat_tugas as perihal"), DB::raw("file_surat_tugas as file"),'nomor_surat', 'tanggal_surat_tugas AS tanggal_surat', 'pegawai.nama', 'surat_tugas.created_at AS created_at');
-		$surats_sql = DB::table('surat_keluar')->join('pegawai', 'surat_keluar.perekam_id', 'pegawai.id')->select(DB::raw("CONCAT('SuratKeluar','-',surat_keluar.id) as id"), DB::raw("'SuratKeluar' as jenis_surat"), DB::raw("perihal_surat_keluar as perihal"), DB::raw("file_surat_keluar as file"),'nomor_surat', 'tanggal_surat_keluar AS tanggal_surat', 'pegawai.nama', 'surat_keluar.created_at AS created_at')->union($surat_tugas)->union($nota_dinas)->toSql();
+		$surat_tugas = DB::table('surat_tugas')->join('pegawai', 'surat_tugas.perekam_id', 'pegawai.id')->select(DB::raw("CONCAT('SuratTugas','-',surat_tugas.id) as id"), DB::raw("'SuratTugas' as jenis_surat"), DB::raw("perihal_surat_tugas as perihal"), DB::raw("file_surat_tugas as file"), 'nomor_surat', 'tanggal_surat_tugas AS tanggal_surat', 'pegawai.nama', 'surat_tugas.created_at AS created_at');
+		$surats_sql = DB::table('surat_keluar')->join('pegawai', 'surat_keluar.perekam_id', 'pegawai.id')->select(DB::raw("CONCAT('SuratKeluar','-',surat_keluar.id) as id"), DB::raw("'SuratKeluar' as jenis_surat"), DB::raw("perihal_surat_keluar as perihal"), DB::raw("file_surat_keluar as file"), 'nomor_surat', 'tanggal_surat_keluar AS tanggal_surat', 'pegawai.nama', 'surat_keluar.created_at AS created_at')->union($surat_tugas)->union($nota_dinas)->toSql();
 		$surats = DB::select("SELECT * FROM ({$surats_sql}) t ORDER BY nomor_surat REGEXP '^[^A-Za-z0-9]' DESC, created_at DESC");
 		return view('generate_nomor_surat.index', compact('surats'));
 	}
@@ -92,6 +94,13 @@ class GenerateNomorSuratController extends Controller
 			}
 		}
 		return response()->json($feedback);
+	}
+
+	private function notif($target, $content)
+	{
+
+		Mail::to($target)->send(new notification($target, $content));
+
 	}
 
 	private function init_track_surat($type_surat, $id_surat)
@@ -163,6 +172,9 @@ class GenerateNomorSuratController extends Controller
 			$klasifikasi = $SuratKeluar->klasifikasi_surat->kode_klasifikasi;
 			$kode_seksi = $SuratKeluar->seksi->kode_seksi;
 			$no_surat = $pengamanan_surat . '-' . $nomor['nomor_urut'] . '/' . $kode_seksi . '/' . $klasifikasi . '/' . $nomor['bulan_terbit'] . '/' . $nomor['tahun_terbit'];
+			$pegawai_perekam = Pegawai::where('id', '=', $SuratKeluar['perekam_id'])->first();
+			$users_perekam = User::where('id', '=', $pegawai_perekam->users_id)->first();
+			$this->notif($users_perekam->email, $no_surat);
 			SuratKeluar::where('id', '=', $param[1])->update(['nomor_surat' => $no_surat]);
 			$this->init_track_surat($param[0], $param[1]);
 			return SuratKeluar::where('id', '=', $param[1])->first();
@@ -173,6 +185,9 @@ class GenerateNomorSuratController extends Controller
 				$klasifikasi = $SuratTugas->klasifikasi_surat->kode_klasifikasi;
 				$kode_seksi = $SuratTugas->seksi->kode_seksi;
 				$no_surat = $nomor['nomor_urut'] . '/' . $kode_seksi . '/' . $klasifikasi . '/' . $nomor['bulan_terbit'] . '/' . $nomor['tahun_terbit'];
+				$pegawai_perekam = Pegawai::where('id', '=', $SuratTugas['perekam_id'])->first();
+				$users_perekam = User::where('id', '=', $pegawai_perekam->users_id)->first();
+				$this->notif($users_perekam->email, $no_surat);
 				SuratTugas::where('id', '=', $param[1])->update(['nomor_surat' => $no_surat]);
 				$this->init_track_surat($param[0], $param[1]);
 				return SuratTugas::where('id', '=', $param[1])->first();
@@ -183,6 +198,9 @@ class GenerateNomorSuratController extends Controller
 					$klasifikasi = $NotaDinas->klasifikasi_surat->kode_klasifikasi;
 					$kode_seksi = $NotaDinas->seksi->kode_seksi;
 					$no_surat = $pengamanan_surat . '-' . $nomor['nomor_urut'] . '/' . $kode_seksi . '/' . $klasifikasi . '/' . $nomor['bulan_terbit'] . '/' . $nomor['tahun_terbit'];
+					$pegawai_perekam = Pegawai::where('id', '=', $NotaDinas['perekam_id'])->first();
+					$users_perekam = User::where('id', '=', $pegawai_perekam->users_id)->first();
+					$this->notif($users_perekam->email, $no_surat);
 					NotaDinas::where('id', '=', $param[1])->update(['nomor_surat' => $no_surat]);
 					$this->init_track_surat($param[0], $param[1]);
 					return NotaDinas::where('id', '=', $param[1])->first();
